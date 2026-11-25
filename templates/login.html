@@ -1,0 +1,83 @@
+{% from 'partials/_ui.html' import logo, icon %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in — MedTranslate</title>
+  <meta name="theme-color" content="#dfe9ff">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body class="auth-page">
+  <main class="auth">
+    <section class="auth__form" aria-labelledby="login-title">
+      <div class="auth__top">
+        {{ logo('dark') }}
+        <a class="auth__back" href="{{ url_for('landing') }}">{{ icon('arrow-right', 16, 'flip') }} Home</a>
+      </div>
+
+      <div class="auth__center">
+        <h1 id="login-title">Welcome back</h1>
+        <p class="auth__sub">Enter your email and password to continue to MedTranslate.</p>
+
+        <div class="demo-note" role="note">
+          {{ icon('info', 20) }}
+          <div><strong>Quick access — no account is created.</strong>
+          <span>This is a lightweight demo entry. Your credentials are only checked for valid input and are not stored or used for authentication.</span></div>
+        </div>
+
+        {% if error %}<p class="form-err" role="alert">{{ error }}</p>{% endif %}
+        <form method="post" action="{{ url_for('login_page') }}" class="auth__fields" autocomplete="on">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+          </div>
+          <div class="auth__actions">
+            <button class="btn btn--teal btn--block" type="submit">Continue to dashboard {{ icon('arrow-right', 18) }}</button>
+            <a class="btn btn--ghost-dark btn--block" href="{{ url_for('landing') }}">Back to home</a>
+          </div>
+        </form>
+        <p class="auth__note">{{ icon('lock', 15) }} No account, password or session is saved by this demo.</p>
+      </div>
+
+      <p class="auth__legal">Educational explanations only — not medical advice.</p>
+    </section>
+
+    <aside class="scene" aria-label="Decorative illustration">
+      <svg class="scene__ribbon" viewBox="0 0 600 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="rb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".85"/><stop offset=".5" stop-color="#cfe9ff" stop-opacity=".55"/><stop offset="1" stop-color="#e7c9ff" stop-opacity=".7"/></linearGradient>
+          <linearGradient id="rb2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bff3ff" stop-opacity=".8"/><stop offset="1" stop-color="#ffd0ea" stop-opacity=".7"/></linearGradient>
+        </defs>
+        <path d="M-40 560C120 470 210 640 380 520S560 330 660 250" fill="none" stroke="url(#rb1)" stroke-width="86" stroke-linecap="round"/>
+        <path d="M-60 130C90 60 200 210 330 120S520 20 660 -40" fill="none" stroke="url(#rb2)" stroke-width="64" stroke-linecap="round" opacity=".8"/>
+      </svg>
+
+      <div class="ring ring--a"></div>
+      <div class="ring ring--b"></div>
+      <div class="disc"><i></i></div>
+      <div class="orb orb--xl"></div>
+      <div class="orb orb--md"></div>
+      <div class="orb orb--sm"></div>
+      <div class="orb orb--xs"></div>
+      <div class="glass glass--rx">{{ icon('pill', 26) }}</div>
+      <div class="glass glass--doc">{{ icon('file-check', 26) }}</div>
+      <div class="capsule"></div>
+
+      <div class="scene__msg">
+        <span class="scene__kicker">{{ icon('sparkles', 16) }} MedTranslate</span>
+        <p>Your medical information, made easier to understand.</p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

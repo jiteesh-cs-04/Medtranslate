@@ -1,0 +1,50 @@
+/* MedTranslate shared design tokens + components (all three surfaces use this). */
+:root{
+  --font: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --teal-950:#031a1b; --teal-900:#06292a; --teal-800:#0a3f3d; --teal-700:#0f5c57;
+  --teal-600:#0f766e; --teal-500:#14b8a6; --teal-400:#2dd4bf; --teal-300:#5eead4;
+  --mint:#8af2c9; --lime:#c8f542;
+  --ink:#0a2a2f; --ink-2:#2c4a52; --muted:#587279; --line:#d6e7ee;
+  --sky-50:#f5fafd; --sky-100:#e8f3f9; --sky-200:#d4e8f2;
+  --lav:#b9a8ff; --pink:#ffb6dd; --cyan:#8fe3ff;
+  --danger:#c43d4b; --warn:#b7791f; --ok:#0f766e;
+  --r-pill:999px; --r-btn:14px; --r-card:24px; --r-lg:32px;
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --shadow-soft:0 18px 50px -22px rgba(10,60,70,.35);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4,p{margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--teal-400);outline-offset:3px;border-radius:10px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.icon{flex:none}
+
+/* Brand */
+.brand{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:600;letter-spacing:-.02em}
+.brand__mark{width:34px;height:34px;filter:drop-shadow(0 6px 10px rgba(15,118,110,.35))}
+.brand__word{font-size:1.18rem}
+.brand__word b{font-weight:800}
+.brand--dark{color:var(--ink)}
+.brand--light{color:#fff}
+
+/* Buttons: one geometry everywhere (14px radius, 48px tall; pill variant for nav) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:.7rem 1.4rem;border-radius:var(--r-btn);border:1px solid transparent;font-weight:700;font-size:.98rem;letter-spacing:-.005em;text-decoration:none;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s,border-color .25s,color .25s;white-space:nowrap}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn--lime{background:var(--lime);color:#0b2a12;box-shadow:0 10px 30px -10px rgba(200,245,66,.55)}
+.btn--lime:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(200,245,66,.7)}
+.btn--teal{background:linear-gradient(180deg,#139e92,#0f766e);color:#fff;box-shadow:0 12px 28px -12px rgba(15,118,110,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn--teal:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(15,118,110,.9),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn--ghost-light{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28)}
+.btn--ghost-light:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.btn--ghost-dark{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn--ghost-dark:hover{border-color:var(--teal-400);transform:translateY(-2px)}
+.btn--sm{min-height:42px;padding:.5rem 1.1rem;font-size:.92rem}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}

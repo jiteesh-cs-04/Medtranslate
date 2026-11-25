@@ -1,0 +1,372 @@
+{% from 'partials/_ui.html' import logo, icon %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedTranslate — Understand your medical documents</title>
+  <meta name="description" content="Upload a prescription or lab report and get a clear, plain-language explanation with questions to ask your doctor. Educational only — not medical advice.">
+  <meta name="theme-color" content="#06292a">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body class="landing">
+
+<!-- ============ HERO (dark teal) ============ -->
+<div class="hero-shell">
+  <div class="bg bg--glow" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="bg bg--pattern" aria-hidden="true"></div>
+  <div class="bg bg--vignette" aria-hidden="true"></div>
+
+  <header class="nav-wrap">
+    <nav class="nav" aria-label="Main">
+      {{ logo('light') }}
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#documents">Documents</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#safety">Safety</a></li>
+        <li><a href="#about">About</a></li>
+        <li class="nav__mobile-actions">
+          <a class="btn btn--ghost-light btn--sm" href="{{ url_for('login_page') }}">Sign in</a>
+        </li>
+      </ul>
+      <div class="nav__actions">
+        <a class="nav__signin" href="{{ url_for('login_page') }}">Sign in</a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="nav__toggle-open">{{ icon('menu', 22) }}</span>
+          <span class="nav__toggle-close">{{ icon('x', 22) }}</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+  <section class="hero container" aria-labelledby="hero-title">
+    <div class="hero__copy">
+      <p class="eyebrow enter" style="--d:.05s"><span class="eyebrow__dot"></span>Understand your medical documents</p>
+      <h1 id="hero-title" class="enter" style="--d:.15s">
+        Prescriptions and lab reports, in <em>plain language</em><span class="dot">.</span>
+      </h1>
+      <p class="hero__lead enter" style="--d:.28s">
+        Upload a prescription or lab report and MedTranslate turns the medical shorthand into a clear, structured explanation — plus <strong>questions worth asking your doctor</strong>.
+      </p>
+      <div class="hero__cta enter" style="--d:.4s">
+        <a class="btn btn--lime" href="{{ url_for('login_page') }}">Get Started {{ icon('arrow-right', 18) }}</a>
+        <a class="btn btn--ghost-light" href="#how">Explore How It Works</a>
+      </div>
+      <ul class="hero__facts enter" style="--d:.52s">
+        <li>{{ icon('file-text', 18) }}<span>PDF, JPG &amp; PNG</span></li>
+        <li>{{ icon('trash', 18) }}<span>Files deleted after analysis</span></li>
+        <li>{{ icon('shield', 18) }}<span>Educational, not medical advice</span></li>
+      </ul>
+    </div>
+
+    <div class="stage enter" style="--d:.3s" role="img" aria-label="Illustration: a sample prescription and a sample lab report are read by MedTranslate and explained in plain language.">
+      <span class="caps caps--1"></span><span class="caps caps--2"></span><span class="caps caps--3"></span><span class="caps caps--4"></span>
+      <span class="ring ring--1"></span><span class="ring ring--2"></span>
+
+      <svg class="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M30 42 C 30 56, 36 60, 40 70"/>
+        <path d="M76 52 C 76 62, 66 64, 62 72"/>
+      </svg>
+
+      <article class="float f1 card card--paper rx" aria-hidden="true">
+        <header>
+          <span class="badge-ico">{{ icon('pill', 18) }}</span>
+          <div><h3>Prescription</h3><small>Dr. A. Sharma · Clinic</small></div>
+          <span class="tag">Sample</span>
+        </header>
+        <div class="rx__row">
+          <b><mark>Metformin</mark> 500 mg</b>
+          <span>1 tablet · <mark>twice daily</mark> · after meals</span>
+        </div>
+        <div class="skel"><i style="width:86%"></i><i style="width:64%"></i><i style="width:74%"></i></div>
+      </article>
+
+      <article class="float f2 card card--paper lab" aria-hidden="true">
+        <header>
+          <span class="badge-ico badge-ico--blue">{{ icon('flask', 18) }}</span>
+          <div><h3>Lab report</h3><small>Complete blood count</small></div>
+          <span class="tag">Sample</span>
+        </header>
+        <div class="lab__val"><span>Hemoglobin</span><b>11.2 <small>g/dL</small></b></div>
+        <div class="range"><span class="range__ok"></span><span class="range__dot"></span></div>
+        <div class="lab__foot"><small>Ref. 12.0 – 16.0</small><span class="pill pill--warn">Below range</span></div>
+      </article>
+
+      <article class="float f3 card card--glass ai" aria-hidden="true">
+        <header>
+          <span class="badge-ico badge-ico--mint">{{ icon('sparkles', 18) }}</span>
+          <h3>In plain language</h3>
+          <span class="tag tag--mint">AI-assisted</span>
+        </header>
+        <p><mark>Metformin</mark> helps control blood sugar. Taking it with food can reduce stomach upset.</p>
+        <p>Your <mark>hemoglobin</mark> is slightly below the lab's reference range — worth discussing with your doctor.</p>
+        <footer>{{ icon('help', 16) }} 2 questions to ask your doctor</footer>
+      </article>
+
+      <div class="float f4 chip chip--glass" aria-hidden="true">{{ icon('scan', 16) }} Scanned or digital</div>
+      <div class="float f5 chip chip--lime" aria-hidden="true">{{ icon('shield', 16) }} Not a diagnosis</div>
+    </div>
+  </section>
+  </main>
+
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90V38C180 78 360 90 560 62S980 -6 1180 18 1360 56 1440 40V90z" fill="#fff"/></svg>
+</div>
+
+<!-- ============ 1. HOW IT WORKS ============ -->
+<section id="how" class="sec sec--white">
+  <div class="container">
+    <div class="sec__head reveal">
+      <p class="kicker">How MedTranslate works</p>
+      <h2>From confusing paperwork to a clear summary in three steps</h2>
+      <p>No medical vocabulary required. Bring a document, review the explanation, and walk into your next appointment prepared.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step reveal" style="--i:0">
+        <div class="step__art step__art--upload" aria-hidden="true">
+          <div class="drop"><span>{{ icon('upload', 26) }}</span><i></i></div>
+          <div class="fchip fchip--a">{{ icon('file-text', 14) }} prescription.pdf</div>
+          <div class="fchip fchip--b">{{ icon('image', 14) }} lab-report.jpg</div>
+        </div>
+        <span class="step__no">01</span>
+        <h3>Upload your document</h3>
+        <p>Drop in a PDF, PNG or JPG up to 10&nbsp;MB. Printed, digital or photographed — it all works.</p>
+      </article>
+
+      <article class="step reveal" style="--i:1">
+        <div class="step__art step__art--read" aria-hidden="true">
+          <div class="doc"><i></i><i></i><i class="s"></i><i></i><i class="s"></i><span class="scan"></span></div>
+          <div class="tagrow"><b>Medicine</b><b>Dose</b><b>Result</b><b>Range</b></div>
+        </div>
+        <span class="step__no">02</span>
+        <h3>We read &amp; structure it</h3>
+        <p>Text is extracted and organised into medicines, test results, units and reference ranges.</p>
+      </article>
+
+      <article class="step reveal" style="--i:2">
+        <div class="step__art step__art--explain" aria-hidden="true">
+          <div class="bubble bubble--a"><i></i><i class="s"></i></div>
+          <div class="bubble bubble--b"><i></i><i></i><i class="s"></i></div>
+          <span class="okmark">{{ icon('check', 22) }}</span>
+        </div>
+        <span class="step__no">03</span>
+        <h3>Get a plain-language explanation</h3>
+        <p>Read what each item means, then take a list of suggested questions to your doctor.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. SUPPORTED DOCUMENTS ============ -->
+<section id="documents" class="sec sec--sky">
+  <div class="container">
+    <div class="sec__head reveal">
+      <p class="kicker">Supported documents</p>
+      <h2>Built for the two documents people ask about most</h2>
+      <p>MedTranslate focuses on prescriptions and laboratory reports, and pulls out the details that matter in each.</p>
+    </div>
+
+    <div class="docs">
+      <article class="docc reveal" style="--i:0">
+        <div class="docc__paper docc__paper--rx" aria-hidden="true">
+          <div class="p-head"><span>{{ icon('pill', 16) }}</span><b>Rx</b><i></i></div>
+          <div class="p-line"><u></u><u class="w"></u></div>
+          <div class="p-line"><u></u><u class="w"></u></div>
+          <div class="p-line"><u class="w"></u><u></u></div>
+          <div class="p-sig"></div>
+        </div>
+        <div class="docc__body">
+          <h3>Prescriptions</h3>
+          <p>Understand what each medicine is for and how it is meant to be taken.</p>
+          <ul class="fields">
+            <li>Medicine name</li><li>Strength</li><li>Dosage</li><li>Frequency</li><li>Timing</li><li>Duration</li><li>Purpose</li><li>Important notes</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="docc reveal" style="--i:1">
+        <div class="docc__paper docc__paper--lab" aria-hidden="true">
+          <div class="p-head"><span>{{ icon('flask', 16) }}</span><b>Lab</b><i></i></div>
+          <div class="bars"><i style="--w:72%"></i><i style="--w:48%" class="warn"></i><i style="--w:84%"></i><i style="--w:60%"></i></div>
+          <div class="p-sig"></div>
+        </div>
+        <div class="docc__body">
+          <h3>Laboratory reports</h3>
+          <p>See whether a value sits inside or outside the lab’s reference range, in everyday words.</p>
+          <ul class="fields">
+            <li>Test name</li><li>Result</li><li>Unit</li><li>Reference range</li><li>Status</li><li>What it measures</li><li>Explanation</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <ul class="formats reveal">
+      <li>{{ icon('file-text', 20) }}<div><b>PDF</b><span>Digital or scanned</span></div></li>
+      <li>{{ icon('image', 20) }}<div><b>PNG &amp; JPG</b><span>Photos and screenshots</span></div></li>
+      <li>{{ icon('upload', 20) }}<div><b>Up to 10&nbsp;MB</b><span>Per document</span></div></li>
+      <li>{{ icon('globe', 20) }}<div><b>Your language</b><span>Choose the explanation language</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 3. WORKFLOW ============ -->
+<section id="workflow" class="sec sec--white">
+  <div class="container">
+    <div class="sec__head reveal">
+      <p class="kicker">Document understanding workflow</p>
+      <h2>What happens between “upload” and “explained”</h2>
+      <p>Every document goes through the same careful pipeline, so results are consistent and checked before you see them.</p>
+    </div>
+
+    <ol class="pipe reveal">
+      <li><span class="pipe__n">{{ icon('upload', 22) }}</span><h3>Upload</h3><p>You choose a PDF or image.</p></li>
+      <li><span class="pipe__n">{{ icon('file-check', 22) }}</span><h3>Validate</h3><p>File type, size and integrity are checked.</p></li>
+      <li><span class="pipe__n">{{ icon('scan', 22) }}</span><h3>Extract</h3><p>Text is read from PDFs; images are prepared for scanning.</p></li>
+      <li><span class="pipe__n">{{ icon('sparkles', 22) }}</span><h3>Understand</h3><p>AI organises the content into a fixed structure.</p></li>
+      <li><span class="pipe__n">{{ icon('book', 22) }}</span><h3>Explain</h3><p>You get a summary, details and questions.</p></li>
+    </ol>
+
+    <div class="contract reveal">
+      <div class="contract__text">
+        <h3>Every result follows one structure</h3>
+        <p>Whatever the document, the response is normalised to the same shape, so nothing is silently dropped and a safety disclaimer is always included.</p>
+        <ul class="ticks">
+          <li>{{ icon('check', 16) }} Document type is identified</li>
+          <li>{{ icon('check', 16) }} Medicines and tests are listed separately</li>
+          <li>{{ icon('check', 16) }} Questions for your doctor are suggested</li>
+          <li>{{ icon('check', 16) }} Disclaimer is added to every result</li>
+        </ul>
+      </div>
+      <pre class="code" aria-label="Example response structure"><code><span class="c">// shape of every analysis result</span>
+{
+  <span class="k">"document_type"</span>: <span class="s">"prescription"</span> | <span class="s">"lab_report"</span>,
+  <span class="k">"summary"</span>: <span class="s">"Plain-language overview…"</span>,
+  <span class="k">"medicines"</span>: [ { name, strength, dosage,
+                 frequency, timing, duration,
+                 purpose, important_information } ],
+  <span class="k">"tests"</span>: [ { name, result, unit, reference_range,
+             status, what_it_measures, explanation } ],
+  <span class="k">"questions_for_doctor"</span>: [ <span class="s">"…"</span> ],
+  <span class="k">"disclaimer"</span>: <span class="s">"Educational only…"</span>
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. SAFETY & TRUST ============ -->
+<section id="safety" class="sec sec--sky">
+  <div class="container safety">
+    <div class="safety__art reveal" aria-hidden="true">
+      <svg viewBox="0 0 320 320" role="presentation">
+        <defs>
+          <linearGradient id="sh" x1="60" y1="30" x2="260" y2="290" gradientUnits="userSpaceOnUse"><stop stop-color="#2dd4bf"/><stop offset="1" stop-color="#0f5c57"/></linearGradient>
+          <radialGradient id="sg" cx=".5" cy=".4" r=".6"><stop stop-color="#8af2c9" stop-opacity=".55"/><stop offset="1" stop-color="#8af2c9" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle cx="160" cy="160" r="150" fill="url(#sg)"/>
+        <circle class="orbit" cx="160" cy="160" r="128" fill="none" stroke="#14b8a6" stroke-opacity=".35" stroke-dasharray="3 9" stroke-width="2"/>
+        <circle cx="160" cy="160" r="98" fill="none" stroke="#14b8a6" stroke-opacity=".22" stroke-width="1.5"/>
+        <path d="M160 52l86 30v70c0 62-44 96-86 116-42-20-86-54-86-116V82z" fill="url(#sh)"/>
+        <path d="M160 52l86 30v70c0 62-44 96-86 116z" fill="#fff" opacity=".1"/>
+        <path d="M160 108v76M122 146h76" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="236" cy="64" r="10" fill="#c8f542"/>
+        <g transform="translate(34 206)"><rect width="82" height="34" rx="17" fill="#fff"/><circle cx="17" cy="17" r="7" fill="#14b8a6"/><rect x="31" y="12" width="40" height="5" rx="2.5" fill="#cfe3ea"/><rect x="31" y="21" width="26" height="5" rx="2.5" fill="#e2eef3"/></g>
+        <g transform="translate(212 236)"><rect width="78" height="34" rx="17" fill="#fff"/><circle cx="17" cy="17" r="7" fill="#b9a8ff"/><rect x="31" y="12" width="36" height="5" rx="2.5" fill="#cfe3ea"/><rect x="31" y="21" width="22" height="5" rx="2.5" fill="#e2eef3"/></g>
+      </svg>
+    </div>
+
+    <div class="safety__body">
+      <div class="sec__head sec__head--left reveal">
+        <p class="kicker">Safety and trust</p>
+        <h2>Designed to inform — never to replace your doctor</h2>
+        <p>Medical information deserves care. These principles shape every part of MedTranslate.</p>
+      </div>
+      <div class="trust">
+        <article class="tc reveal" style="--i:0"><span class="tc__i">{{ icon('book', 22) }}</span><h3>Educational only</h3><p>Explanations help you understand a document. They are not medical advice, diagnosis or treatment.</p></article>
+        <article class="tc reveal" style="--i:1"><span class="tc__i">{{ icon('stethoscope', 22) }}</span><h3>Doctor stays in charge</h3><p>Each result suggests questions to bring to your clinician before you change anything.</p></article>
+        <article class="tc reveal" style="--i:2"><span class="tc__i">{{ icon('trash', 22) }}</span><h3>Temporary files</h3><p>Uploads are stored briefly for processing and removed from the server when analysis finishes.</p></article>
+        <article class="tc reveal" style="--i:3"><span class="tc__i">{{ icon('lock', 22) }}</span><h3>No accounts or database</h3><p>This version has no user accounts and keeps no document history. Nothing about you is stored.</p></article>
+        <article class="tc reveal" style="--i:4"><span class="tc__i">{{ icon('file-check', 22) }}</span><h3>Validated uploads</h3><p>Only PDF, PNG and JPG files are accepted, and corrupted or oversized files are rejected.</p></article>
+        <article class="tc reveal" style="--i:5"><span class="tc__i">{{ icon('alert', 22) }}</span><h3>Honest about limits</h3><p>AI can misread a scan. Always check explanations against your original document.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. ABOUT ============ -->
+<section id="about" class="sec sec--white">
+  <div class="container about">
+    <div class="about__copy reveal">
+      <p class="kicker">About MedTranslate</p>
+      <h2>Medical language shouldn’t be a barrier to understanding your own health</h2>
+      <p>Prescriptions are written in abbreviations and lab reports in ranges and units. MedTranslate is an open-source project that translates that shorthand into plain, structured explanations, so patients and families can ask better questions and feel more confident at the appointment.</p>
+      <a class="btn btn--teal" href="{{ url_for('dashboard') }}">Try MedTranslate {{ icon('arrow-right', 18) }}</a>
+    </div>
+    <div class="about__cards">
+      <article class="pc reveal" style="--i:0"><b>01</b><div><h3>Clarity first</h3><p>Short sentences, everyday words, and units always shown beside values.</p></div></article>
+      <article class="pc reveal" style="--i:1"><b>02</b><div><h3>Caution by default</h3><p>No diagnoses, no dosing changes — just explanation and questions.</p></div></article>
+      <article class="pc reveal" style="--i:2"><b>03</b><div><h3>Open and inspectable</h3><p>The code is public, so anyone can see how documents are handled.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. GITHUB ============ -->
+<section id="github" class="sec sec--sky sec--tight">
+  <div class="container">
+    <div class="gh reveal">
+      <div class="gh__copy">
+        <span class="gh__badge">{{ icon('github', 18) }} Open source</span>
+        <h2>Read the code. Run it yourself.</h2>
+        <p>MedTranslate is a Flask backend with a validation layer, a swappable AI pipeline and a lightweight web interface. Clone it, explore it, and contribute.</p>
+        <div class="gh__cta">
+          <a class="btn btn--lime" href="{{ github_url }}" target="_blank" rel="noopener noreferrer">{{ icon('github', 18) }} View repository</a>
+          <code class="gh__cmd">pip install -r requirements.txt</code>
+        </div>
+      </div>
+      <div class="tree" aria-label="Repository structure">
+        <div class="tree__bar"><i></i><i></i><i></i><span>Medtranslate</span></div>
+        <ul>
+          <li class="d">backend/
+            <ul><li class="f">auth.py</li><li class="f">document_processor.py</li></ul>
+          </li>
+          <li class="d">templates/</li>
+          <li class="d">static/</li>
+          <li class="f hl">app.py</li>
+          <li class="f">requirements.txt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. FOOTER ============ -->
+<footer class="foot">
+  <div class="container foot__grid">
+    <div class="foot__brand">
+      {{ logo('light') }}
+      <p>Plain-language explanations of prescriptions and lab reports.</p>
+    </div>
+    <nav aria-label="Footer">
+      <h4>Explore</h4>
+      <a href="#how">How it works</a><a href="#documents">Documents</a><a href="#workflow">Workflow</a><a href="#safety">Safety</a>
+    </nav>
+    <nav aria-label="Project">
+      <h4>Project</h4>
+      <a href="#about">About</a><a href="{{ github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a><a href="{{ url_for('login_page') }}">Sign in</a>
+    </nav>
+  </div>
+  <div class="container foot__legal">
+    <p><strong>Medical disclaimer:</strong> MedTranslate provides educational explanations of your medical documents and is not a substitute for professional medical advice, diagnosis or treatment. Always seek the advice of a qualified healthcare provider. In an emergency, contact your local emergency number.</p>
+    <p class="foot__copy">© <span id="yr">2026</span> MedTranslate</p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/landing.js') }}" defer></script>
+</body>
+</html>

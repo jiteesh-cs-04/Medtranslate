@@ -1,0 +1,110 @@
+{% from 'partials/_ui.html' import logo, icon %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — MedTranslate</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body class="dash" data-max-mb="{{ max_file_mb }}">
+  <div class="dash__bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="topbar-wrap">
+    <nav class="topbar" aria-label="Primary">
+      {{ logo('dark', url_for('landing')) }}
+      <ul class="tabs">
+        <li><a class="is-active" href="#analyze" aria-current="page">{{ icon('upload', 17) }} Analyze</a></li>
+        <li><a href="#results">{{ icon('file-text', 17) }} Results</a></li>
+        <li><a href="#guide">{{ icon('book', 17) }} Guide</a></li>
+      </ul>
+      <div class="topbar__user">
+        <span class="ai-status" id="ai-status" role="status">Checking AI setup…</span>
+        <a class="btn btn--ghost-dark btn--sm" href="{{ url_for('landing') }}">Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <p class="intro__kicker">AI-assisted document understanding</p>
+      <h1>Understand your medical document</h1>
+      <p>Extract the information written in a prescription or lab report. For prescriptions, MedTranslate can add patient-friendly medicine context from DailyMed. Always verify details against the original document.</p>
+    </section>
+
+    <div class="grid">
+      <aside class="col-left" id="analyze">
+        <form id="upload-form" class="glass panel" novalidate>
+          <h2>{{ icon('upload', 20) }} New analysis</h2>
+
+          <label class="drop" id="drop" for="file">
+            <input id="file" name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" class="sr-only">
+            <span class="drop__ico">{{ icon('upload', 28) }}</span>
+            <strong>Drop a file here or <u>browse</u></strong>
+            <small>PDF, PNG or JPG · up to {{ max_file_mb }} MB</small>
+          </label>
+
+          <div class="picked" id="picked" hidden>
+            <span class="picked__ico">{{ icon('file-check', 20) }}</span>
+            <div class="picked__meta"><b id="picked-name"></b><small id="picked-size"></small></div>
+            <button type="button" class="iconbtn" id="picked-clear" aria-label="Remove selected file">{{ icon('x', 18) }}</button>
+          </div>
+
+          <div class="fld">
+            <label for="language">{{ icon('globe', 16) }} Explanation language</label>
+            <select id="language" name="language">
+              <option>English</option><option>Hindi</option><option>Tamil</option><option>Telugu</option>
+              <option>Bengali</option><option>Marathi</option><option>Spanish</option><option>French</option>
+            </select>
+          </div>
+
+          <p class="form-err" id="form-err" role="alert" hidden></p>
+          <button class="btn btn--teal btn--full" id="analyze-btn" type="submit" disabled>
+            <span class="lbl">{{ icon('sparkles', 18) }} Analyze document</span>
+            <span class="spin" aria-hidden="true">{{ icon('loader', 18) }}</span>
+          </button>
+        </form>
+      </aside>
+
+      <section class="col-right" id="results" aria-live="polite" aria-busy="false">
+        <div class="glass panel empty" id="state-empty">
+          <div class="empty__art" aria-hidden="true">
+            <div class="d d1"><i></i><i></i><i class="s"></i></div>
+            <div class="d d2">{{ icon('sparkles', 28) }}</div>
+          </div>
+          <h2>Your explanation will appear here</h2>
+          <p>Choose a document on the left. MedTranslate classifies it and extracts the information explicitly present. Prescription medicines may also receive additional context from DailyMed.</p>
+        </div>
+
+        <div class="glass panel loading" id="state-loading" hidden>
+          <div class="sk sk--title"></div><div class="sk"></div><div class="sk"></div><div class="sk sk--short"></div>
+          <p class="muted">Reading your document…</p>
+        </div>
+
+        <div class="glass panel err" id="state-error" hidden>{{ icon('alert', 22) }}<div><h2>We couldn't analyze that document</h2><p id="error-msg"></p></div></div>
+
+        <div id="state-result" hidden></div>
+      </section>
+    </div>
+
+    <section class="glass panel guide" id="guide">
+      <h2>{{ icon('book', 20) }} How to read your results</h2>
+      <div class="guide__grid">
+        <div><span>{{ icon('pill', 22) }}</span><h3>Medicines</h3><p>Shows strength, dose, how often and when to take it. Follow your prescriber's label, not this summary, if they differ.</p></div>
+        <div><span>{{ icon('flask', 22) }}</span><h3>Test results</h3><p>Values, units and reference ranges are extracted as printed. This version does not classify lab values as normal or abnormal.</p></div>
+        <div><span>{{ icon('help', 22) }}</span><h3>Verify details</h3><p>AI can misread documents. Compare every extracted field with the original and ask your healthcare professional about anything unclear.</p></div>
+      </div>
+    </section>
+
+    <p class="disclaimer-foot">{{ icon('shield', 16) }} MedTranslate provides educational explanations and is not a substitute for professional medical advice, diagnosis or treatment. AI can misread documents — verify against the original.</p>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+</body>
+</html>
